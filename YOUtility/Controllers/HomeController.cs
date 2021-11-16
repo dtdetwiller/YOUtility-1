@@ -20,7 +20,7 @@ namespace YOUtility.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return View("~/Views/Home/Home.cshtml");
         }
 
         public IActionResult Privacy()

@@ -15,6 +15,9 @@ namespace YOUtility
     {
         public Startup(IConfiguration configuration)
         {
+            int students = 5;
+
+            
             Configuration = configuration;
         }
 
@@ -23,6 +26,7 @@ namespace YOUtility
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            
             services.AddControllersWithViews();
         }
 
