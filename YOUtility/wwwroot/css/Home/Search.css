@@ -1,0 +1,92 @@
+﻿.flexbox {
+    display: flex;
+    justify-content: center;
+}
+
+.flexbox-item {
+    background: white;
+    display: flex;
+    border-radius: 12px;
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .1);
+    margin: auto;
+}
+
+.flexbox-item-1 {
+    width: 200px;
+    margin: 0 7.5px 0 15px;
+    min-height: calc(100vh - 100px);
+    flex-shrink: 0
+}
+
+.flexbox-item-2 {
+    margin: 0 15px 0 7.5px;
+    min-height: calc(100vh - 100px);
+    flex-grow: 1;
+    max-width: 650px;
+    flex-direction: column;
+}
+
+.wrapper {
+    margin: 15px;
+}
+
+#s_application_display {
+    margin-top: 15px;
+}
+
+.card {
+    margin-bottom: 15px;
+}
+
+.header {
+    margin: 15px;
+}
+
+li {
+    list-style: none;
+}
+
+.link-item {
+    margin: 15px 0 15px 15px;
+}
+
+a {
+    color: #5DAA68;
+}
+
+    a:hover {
+        color: #28582f;
+        text-decoration: none;
+    }
+
+.scroll-box {
+    width: 100%;
+    height: calc(100vh - 250px);
+    overflow: hidden;
+    overflow-y: scroll;
+    border-radius: 8px;
+}
+
+
+/*
+    Scroll bar stuff
+*/
+
+::-webkit-scrollbar {
+    width: 0;
+}
+
+::-webkit-scrollbar-track {
+    border: 1px solid #a1a1a1;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #a1a1a1;
+    border-radius: 10px;
+}
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #808080;
+    }
+

@@ -1,0 +1,37 @@
+﻿@{
+    Layout = null;
+}
+
+@using Microsoft.AspNetCore.Identity
+@using YOUtility.Areas.Identity.Data
+
+@inject SignInManager<YOUtilityUser> SignInManager
+@inject UserManager<YOUtilityUser> UserManager
+
+<head>
+    <title>youtility log-in</title>
+    <meta charset="utf-8">
+    <link rel="icon" href="~\images\youtility_emblem.png" />
+    <link rel="stylesheet" href="~/css/Home/site.css" />
+</head>
+
+<ul class="navbar-nav">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <li class="nav-item">
+            <a id="manage" class="text-center" asp-controller="Home" asp-action="Dashboard" title="Manage">Hello @UserManager.GetUserName(User)!</a>
+        </li>
+        <li class="nav-item">
+            <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                <button id="logout" type="submit" class="btn btn-primary">Logout</button>
+            </form>
+        </li>
+    }
+    else
+    {
+        <div>
+            <a class="btn btn-primary" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
+            <a class="create-account" id="register" asp-area="Identity" asp-page="/Account/Register">or Create an Account</a>
+        </div>
+    }
+</ul>

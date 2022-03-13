@@ -1,0 +1,197 @@
+﻿tr{
+    height: 35px;
+}
+.flexbox-columns {
+    flex-direction: column;
+    height: calc(100vh - 72px);
+}
+
+.flexbox {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 0 15px 15px 22.5px;
+}
+
+    .flexbox .flexbox-item {
+        height: auto;
+        width: calc(60% - 15px);
+    }
+
+.flexbox-item {
+    border-radius: 12px;
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .1);
+    background-color: white;
+    flex-grow: 1;
+    margin-bottom: 2%;
+}
+
+.flexbox .break {
+    width: 0;
+    height: auto;
+}
+
+.break {
+    flex-basis: 100%;
+    height: 0;
+    margin: 0;
+}
+
+.user {
+    width: calc(40% - 15px) !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+}
+
+
+.maincard {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    font-weight: bold;
+    font-family: Bahnschrift;
+}
+
+.thecard {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: all 0.8s ease
+}
+
+    .thecard:hover {
+        transform: rotateY(180deg)
+    }
+
+.thefront {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility:hidden;
+    background: #5DAA68;
+    color: #fff;
+    border-radius: 10px;
+    cursor: pointer;
+    border: 1px solid #eee;
+    box-shadow: 5px 6px 6px 2px #e9ecef;
+    padding: 10px
+}
+
+.theback {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    backface-visibility: hidden;
+    background: #5DAA68;
+    color: #fff;
+    border-radius: 10px;
+    transform: rotateY(180deg);
+    border: 1px solid #eee;
+    box-shadow: 5px 6px 6px 2px #e9ecef;
+    padding: 10px
+}
+
+.btn {
+    padding-left: 20px;
+    padding-right: 20px
+}
+
+.user_name {
+    color: #eee;
+    font-size: 15px;
+    margin-top: 0px;
+    font-family: Bahnschrift;
+}
+
+.mt-2 {
+    font-weight: bold;
+    font-family: Bahnschrift;
+}
+
+h4 {
+    font-weight: bold;
+    font-family: Bahnschrift;
+}
+
+.about {
+    font-size: 20px;
+    font-family: Bahnschrift;
+    font-weight: normal;
+}
+
+.more {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    font-size: 9px;
+}
+
+.follow-button,
+.follow-button:active,
+.follow-button:visited,
+.follow-button:focus {
+    background-color: #8E24AA !important;
+    border-color: #8E24AA !important;
+    color: #fff !important;
+    box-shadow: none
+}
+
+    .follow-button:hover {
+        background-color: #69157f !important;
+        border-color: #69157f !important
+    }
+
+.table-stats table {
+    font-family: Bahnschrift;
+}
+
+    .table-stats table th,
+    .table-stats table td {
+        border: none;
+        border-bottom: 1px solid #e8e9ef;
+        color: #868e96;
+        font-size: 12px;
+        font-weight: normal;
+        padding: .75em 1.25em;
+        text-transform: uppercase;
+    }
+
+        .table-stats table th img,
+        .table-stats table td img {
+            margin-right: 10px;
+            max-width: 32px;
+        }
+
+        .table-stats table th .name,
+        .table-stats table td .name {
+            color: #343a40;
+            font-size: 14px;
+            text-transform: capitalize;
+        }
+
+    .table-stats table td {
+        color: #343a40;
+        font-size: 14px;
+        font-weight: 600;
+        text-transform: capitalize;
+        vertical-align: middle;
+    }
+
+.chart {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px 14px;
+    justify-content: center;
+    margin-bottom: 15px;
+    background: white;
+}
+
+@media (max-width: 1200px) {
+    .chart {
+        width: calc(100% / 1);
+    }
+}

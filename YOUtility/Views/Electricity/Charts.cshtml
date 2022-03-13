@@ -1,0 +1,80 @@
+﻿@model IEnumerable<YOUtility.Models.Bill>
+@using Microsoft.AspNetCore.Identity
+@using YOUtility.Areas.Identity.Data
+
+@inject SignInManager<YOUtilityUser> SignInManager
+@inject UserManager<YOUtilityUser> UserManager
+
+@{
+    String currMonth = DateTime.Today.ToString("MMMM");
+}
+
+<head>
+    <title>youtility water charts</title>
+    <meta charset="utf-8">
+    <link rel="icon" href="~\images\youtility_emblem.png" />
+</head>
+
+@section Scripts {
+    <script src="~/js/Electricity/charts.js" asp-append-version="true"></script>
+    <link rel="stylesheet" href="~/css/Utilities/charts.css"/>
+}
+
+<body onload="getMonthData(@ViewBag.thisMonthUsed, @ViewBag.lastMonthUsed), getAllUtilityMonthData(@ViewBag.waterCost, @ViewBag.gasCost, @ViewBag.electricityCost), getThisMonthData(@ViewBag.thisMonthUsed), getYearData()">
+    <div class="charts-box">
+        <div class="charts-title-box">
+            <div class="timeline-title">Here are some charts to help visualize your electricity bill data.</div>
+        </div>
+    </div>
+    <div class="charts-overview-box">
+        <div class="chart chart-1">
+            <canvas id="line-chart-1"></canvas>
+        </div>
+        <div class="chart chart-2">
+            <canvas id="pie-chart"></canvas>
+        </div>
+        <div class="chart chart-3">
+            <canvas id="bar-chart"></canvas>
+        </div>
+        <div class="chart chart-4">
+            <canvas id="bar-chart-2"></canvas>
+        </div>
+    </div>
+
+
+    <!-- <div class="container py-3">
+        <header>
+            <div class="tips-header p-3 pb-md-4 mx-auto text-center">
+                <h1 class="display-4 fw-normal">Water Charts</h1>
+                <p class="fs-5 text-muted">Here are some charts to help visualize data.</p>
+            </div>
+        </header>
+
+        <main>
+            <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+                <div class="col">
+                    <div class="card mb-4 rounded-3 shadow-sm">
+                        <div class="card-header py-3">
+                            <h4 class="my-0 fw-normal">@currMonth water usage</h4>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="bar-chart"></canvas>
+                        </div>
+                        <div class="card-footer">This chart shows the amount of water used within this month</div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card mb-4 rounded-3 shadow-sm">
+                        <div class="card-header py-3">
+                            <h4 class="my-0 fw-normal">Water vs other utilites</h4>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="pie-chart"></canvas>
+                        </div>
+                        <div class="card-footer">This chart shows the cost of each utility compared to one another</div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div> -->
+</body>

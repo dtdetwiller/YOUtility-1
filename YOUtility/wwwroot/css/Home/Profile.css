@@ -1,0 +1,96 @@
+﻿.flexbox {
+    display: flex;
+    justify-content: center;
+}
+
+.flexbox-item {
+    background: white;
+    display: flex;
+    border-radius: 12px;
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .1);
+    margin: auto;
+}
+
+.flexbox-item-1 {
+    width: 200px;
+    margin: 0 7.5px 0 15px;
+    min-height: calc(100vh - 100px);
+    flex-shrink: 0
+}
+
+.flexbox-item-2 {
+    margin: 0 15px 0 7.5px;
+    min-height: calc(100vh - 100px);
+    flex-grow: 1;
+    max-width: 650px;
+    position: relative;
+}
+
+.header {
+    margin: 15px;
+}
+
+li {
+    list-style: none;
+}
+
+.link-item {
+    margin: 15px 0 15px 15px;
+}
+
+a {
+    color: #5DAA68;
+}
+
+    a:hover {
+        color: #28582f;
+        text-decoration: none;
+    }
+
+img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.profile-pic {
+    margin: 30px;
+}
+
+.username {
+    margin-left: 30px;
+    right: 30px;
+    font-size: 1.25rem;
+}
+
+.profile-btn {
+    margin-top: 60px;
+    right: 30px;
+    position: absolute;
+}
+
+.content-item {
+    position: absolute;
+    top: 150px;
+    left: 30px;
+}
+
+hr {
+    position: absolute;
+    width: calc(100% - 30px);
+    margin-top: 200px !important;
+    margin-left: 15px;
+}
+
+.user-info {
+    margin-top: 50px;
+    margin-left: 30px;
+}
+
+.join-date {
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+    color: #bababa;
+}
+

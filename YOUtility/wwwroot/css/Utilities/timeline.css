@@ -1,0 +1,54 @@
+﻿.flexbox-1 {
+    display: flex;
+    flex-direction: column;
+    padding: 0 15px 15px 15px;
+}
+
+.flexbox-item {
+    background: white;
+    width: 333px;;
+    display: flex;
+    padding: 15px 14px;
+    justify-content: left;
+    border-radius: 12px;
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .1);
+    margin-left: 7.5px;
+}
+
+.flexbox-1 .form-group {
+    margin-right: 15px;
+    margin-bottom: 0;
+}
+
+.timeline-box {
+    padding: 0 15px 15px 15px;
+    display: flex;
+    flex-direction: column;
+    opacity: 1;
+}
+
+.timeline-title-box, .timeline-chart {
+    margin: auto;
+    margin-bottom: 15px;
+    background: white;
+}
+
+.timeline-title-box {
+    width: calc(100% / 1 - 15px);
+    display: flex;
+    align-items: center;
+    padding: 15px 14px;
+    justify-content: center;
+    border-radius: 12px;
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .1);
+}
+
+.timeline-chart {
+    width: calc(100% / 1 - 15px);
+    display: flex;
+    align-items: center;
+    padding: 15px 14px;
+    justify-content: center;
+    border-radius: 12px;
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .1);
+}

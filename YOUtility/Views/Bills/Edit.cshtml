@@ -1,0 +1,75 @@
+﻿@model YOUtility.Models.Bill
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<head>
+    <title>youtility</title>
+    <meta charset="utf-8">
+
+    <!-- Top left corner emblem -->
+    <link rel="icon" href="..\images\youtility_emblem.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://npmcdn.com/pdfjs-dist/build/pdf.js"></script>
+</head>
+
+<div class="flexbox">
+    <div class="flexbox-item">
+        <div class="form">
+            <h2 class="form-upload-text">Edit Bill</h2>
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="ID" />
+                <div class="form-group">
+                    <label asp-for="utility" class="control-label">Utility Type</label>
+                    <select asp-for="utility" class="form-control">
+                        <option value="@Bill.Type.water">@Bill.Type.water</option>
+                        <option value="@Bill.Type.gas">@Bill.Type.gas</option>
+                        <option value="@Bill.Type.electricity">@Bill.Type.electricity</option>
+                    </select>
+                    <span asp-validation-for="utility" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="due" class="control-label"></label>
+                    <input asp-for="due" class="form-control" />
+                    <span asp-validation-for="due" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="consumed" class="control-label"></label>
+                    <input asp-for="consumed" class="form-control" />
+                    <span asp-validation-for="consumed" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="uploadTime" class="control-label"></label>
+                    <input asp-for="uploadTime" class="form-control" />
+                    <span asp-validation-for="uploadTime" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="beginningPeriod" class="control-label"></label>
+                    <input asp-for="beginningPeriod" class="form-control" />
+                    <span asp-validation-for="beginningPeriod" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="endingPeriod" class="control-label"></label>
+                    <input asp-for="endingPeriod" class="form-control" />
+                    <span asp-validation-for="endingPeriod" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="form-create btn btn-primary" />
+                    <input asp-controller="Bills" asp-action="userIndex" type="submit" value="Bills" class="form-create btn btn-primary" />
+                </div>
+            </form>
+        </div>
+        <br />
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <link rel="stylesheet" href="~/css/Bills/create.css" />
+    <link rel="stylesheet" href="~/css/Bills/edit.css" />
+}

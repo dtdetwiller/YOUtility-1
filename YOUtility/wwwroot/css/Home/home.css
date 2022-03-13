@@ -1,0 +1,104 @@
+﻿/* Smaller than standard 960 (devices and browsers) */
+@media only screen and (max-width: 959px) {
+}
+
+/* Tablet Portrait size to standard 960 (devices and browsers) */
+@media only screen and (min-width: 768px) and (max-width: 959px) {
+}
+
+/* All Mobile Sizes (devices and browser) */
+@media only screen and (max-width: 767px) {
+}
+
+/* Mobile Landscape Size to Tablet Portrait (devices and browsers) */
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+}
+
+/* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
+@media only screen and (max-width: 479px) {
+}
+
+/* Split the screen in half */
+.split {
+    height: 100%;
+    width: 50%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+
+p {
+    font-weight: bold;
+    font-family: Bahnschrift;
+    font-size: 30px;
+}
+
+/* Control the left side */
+.left {
+    left: 0;
+    background-color: white;
+}
+
+/* Control the right side */
+.right {
+    right: 0;
+    background-color: #5DAA68;
+    box-shadow: 0px 0px 8px 1px rgb(0 0 0 / 75%);
+}
+
+/* If you want the content centered horizontally and vertically */
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+    /* Style the image inside the centered container, if needed */
+    .centered img {
+        width: 270px;
+    }
+    .logo {
+        width: 600px!important;
+    }
+
+/*Headers for carousel*/
+.margin {
+    margin-bottom: 45px;
+    font-weight: bold;
+    font-family: Bahnschrift;
+    font-size: 60px;
+    padding-top: 60px;
+}
+
+/*Centers the carousel based on the right side*/
+.carousel-inner {
+    position: relative;
+    width: 175%;
+    overflow: hidden;
+    right: 35%;
+}
+
+/*Footer*/
+.footer {
+    color: #5DAA68;
+    font-weight: bold;
+    font-family: Bahnschrift;
+    text-align: center;
+    position: relative;
+}
+/*Create account link next to login*/
+.create-account {
+    color: #3F6844;
+    font-weight: bold;
+    font-family: Bahnschrift;
+    font-size: 22px;
+}
+
+.btn-primary {
+    background: #5DAA68 !important;
+    border-color: #5DAA68 !important;
+}

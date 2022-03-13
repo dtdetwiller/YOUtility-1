@@ -1,0 +1,209 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using YOUtility.Areas.Identity.Data
+
+@inject SignInManager<YOUtilityUser> SignInManager
+@inject UserManager<YOUtilityUser> UserManager
+@model IEnumerable<YOUtility.Models.User>
+
+@{
+}
+
+
+@section Scripts {
+    <link rel="stylesheet" href="~/css/Home/Compare.css" />
+    <script src="~/js/Home/compare.js" asp-append-version="true"></script>
+}
+
+<head>
+    <title>youtility compare</title>
+    <meta charset="utf-8">
+    <link rel="icon" href="~\images\youtility_emblem.png" />
+</head>
+
+<body  onload="getMonthData()">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <div class="wrapper">
+            <div class="flexbox flexbox-columns">
+                <div class="flexbox-item user">
+                    <div class="maincard">
+                        <div class="thecard">
+                            <div class="thefront text-center py-4">
+                                <img src="@UserManager.GetUserAsync(User).Result.ProfilePic" class="rounded-circle" width="100" height="100">
+                                <h3 class="mt-2 mb-0">John Doe</h3> <small class="user_name">@UserManager.GetUserAsync(User).Result.UserName</small>
+                                <div class="stats d-flex justify-content-between px-3 mt-3">
+                                    <div class="stats-1 d-flex flex-column"> <span>@ViewBag.achievements</span> <span>Achievements</span> </div>
+                                    <div class="stats-1 d-flex flex-column"> <span>@ViewBag.userBillCount</span> <span>Uploaded Bills</span> </div>
+                                    <div class="stats-1 d-flex flex-column"> <span>@UserManager.GetUserAsync(User).Result.JoinDate.Date.ToShortDateString()</span> <span>Date Joined</span> </div>
+                                </div>
+                                <span class="more">Mouse over the card for more info</span>
+                            </div>
+                            <div class="theback text-center py-3 px-3">
+                                <h4>About John Doe</h4>
+                                <p class="about">"@UserManager.GetUserAsync(User).Result.Biography"</p>
+                                <h4>Goals</h4>
+                                <p class="about">"@UserManager.GetUserAsync(User).Result.Goals"</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flexbox-item user">
+                    <div class="maincard">
+                        <div class="thecard">
+                            <div class="thefront text-center py-4">
+                                <img src="@ViewBag.randomUser.ProfilePic" class="rounded-circle" width="100" height="100">
+                                <h3 class="mt-2 mb-0">Doe John</h3> <small class="user_name">@ViewBag.randomUser.UserName</small>
+                                <div class="stats d-flex justify-content-between px-3 mt-3">
+                                    <div class="stats-1 d-flex flex-column"> <span>@ViewBag.compareAchievements</span> <span>Achievements</span> </div>
+                                    <div class="stats-1 d-flex flex-column"> <span>@ViewBag.compareBill</span> <span>Uploaded Bills</span> </div>
+                                    <div class="stats-1 d-flex flex-column"> <span>@ViewBag.randomUser.JoinDate.Date.ToShortDateString()</span> <span>Date Joined</span> </div>
+                                </div>
+                                <span class="more">Mouse over the card for more info</span>
+                            </div>
+                            <div class="theback text-center py-3 px-3">
+                                <h4>About Doe John</h4>
+                                <p class="about">"@ViewBag.randomUser.Biography"</p>
+                                <br />
+                                <h4>Goals</h4>
+                                <p class="about">"@ViewBag.randomUser.Goals"</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="break">
+
+                </div>
+                <div class="flexbox-item">
+
+                    <div class="card-body">
+                        <div class="table-stats order-table ov-h">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th class="serial">Username</th>
+                                        <th class="avatar">Avatar</th>
+                                        <th>Achievements</th>
+                                        <th>Bills</th>
+                                        <th>Date Joined</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="serial">@ViewBag.randomUsers[0].UserName</td>
+                                        <td class="avatar">
+                                            <div class="round-img">
+                                                <a href="#"><img class="rounded-circle" src="@ViewBag.randomUsers[0].ProfilePic" alt=""></a>
+                                            </div>
+                                        </td>
+                                        <td>@ViewBag.randomAchievements[0]</td>
+                                        <td>  <span>@ViewBag.billCount[0]</span> </td>
+                                        <td> <span>@ViewBag.randomUsers[0].JoinDate.Date.ToShortDateString()</span> </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="serial">@ViewBag.randomUsers[1].UserName</td>
+                                        <td class="avatar">
+                                            <div class="round-img">
+                                                <a href="#"><img class="rounded-circle" src="@ViewBag.randomUsers[1].ProfilePic" alt=""></a>
+                                            </div>
+                                        </td>
+                                        <td>@ViewBag.randomAchievements[1]</td>
+                                        <td>  <span>@ViewBag.billCount[1]</span> </td>
+                                        <td> <span>@ViewBag.randomUsers[1].JoinDate.Date.ToShortDateString()</span> </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="serial">@ViewBag.randomUsers[2].UserName</td>
+                                        <td class="avatar">
+                                            <div class="round-img">
+                                                <a href="#"><img class="rounded-circle" src="@ViewBag.randomUsers[2].ProfilePic" alt=""></a>
+                                            </div>
+                                        </td>
+                                        <td>@ViewBag.randomAchievements[2]</td>
+                                        <td>  <span>@ViewBag.billCount[2]</span> </td>
+                                        <td> <span>@ViewBag.randomUsers[2].JoinDate.Date.ToShortDateString()</span> </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="serial">@ViewBag.randomUsers[3].UserName</td>
+                                        <td class="avatar">
+                                            <div class="round-img">
+                                                <a href="#"><img class="rounded-circle" src="@ViewBag.randomUsers[3].ProfilePic" alt=""></a>
+                                            </div>
+                                        </td>
+                                        <td>@ViewBag.randomAchievements[3]</td>
+                                        <td>  <span>@ViewBag.billCount[3]</span> </td>
+                                        <td> <span>@ViewBag.randomUsers[3].JoinDate.Date.ToShortDateString()</span> </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="serial">@ViewBag.randomUsers[4].UserName</td>
+                                        <td class="avatar">
+                                            <div class="round-img">
+                                                <a href="#"><img class="rounded-circle" src="@ViewBag.randomUsers[4].ProfilePic" alt=""></a>
+                                            </div>
+                                        </td>
+                                        <td>@ViewBag.randomAchievements[4]</td>
+                                        <td>  <span>@ViewBag.billCount[4]</span> </td>
+                                        <td> <span>@ViewBag.randomUsers[4].JoinDate.Date.ToShortDateString()</span> </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="serial">@ViewBag.randomUsers[5].UserName</td>
+                                        <td class="avatar">
+                                            <div class="round-img">
+                                                <a href="#"><img class="rounded-circle" src="@ViewBag.randomUsers[5].ProfilePic" alt=""></a>
+                                            </div>
+                                        </td>
+                                        <td>@ViewBag.randomAchievements[5]</td>
+                                        <td>  <span>@ViewBag.billCount[5]</span> </td>
+                                        <td> <span>@ViewBag.randomUsers[5].JoinDate.Date.ToShortDateString()</span> </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="serial">@ViewBag.randomUsers[6].UserName</td>
+                                        <td class="avatar">
+                                            <div class="round-img">
+                                                <a href="#"><img class="rounded-circle" src="@ViewBag.randomUsers[6].ProfilePic" alt=""></a>
+                                            </div>
+                                        </td>
+                                        <td>@ViewBag.randomAchievements[6]</td>
+                                        <td>  <span>@ViewBag.billCount[6]</span> </td>
+                                        <td> <span>@ViewBag.randomUsers[6].JoinDate.Date.ToShortDateString()</span> </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="serial">@ViewBag.randomUsers[7].UserName</td>
+                                        <td class="avatar">
+                                            <div class="round-img">
+                                                <a href="#"><img class="rounded-circle" src="@ViewBag.randomUsers[7].ProfilePic" alt=""></a>
+                                            </div>
+                                        </td>
+                                        <td>@ViewBag.randomAchievements[7]</td>
+                                        <td>  <span>@ViewBag.billCount[7]</span> </td>
+                                        <td> <span>@ViewBag.randomUsers[7].JoinDate.Date.ToShortDateString()</span> </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="serial">@ViewBag.randomUsers[8].UserName</td>
+                                        <td class="avatar">
+                                            <div class="round-img">
+                                                <a href="#"><img class="rounded-circle" src="@ViewBag.randomUsers[8].ProfilePic" alt=""></a>
+                                            </div>
+                                        </td>
+                                        <td>@ViewBag.randomAchievements[8]</td>
+                                        <td>  <span>@ViewBag.billCount[8]</span> </td>
+                                        <td> <span>@ViewBag.randomUsers[8].JoinDate.Date.ToShortDateString()</span> </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="serial">@ViewBag.randomUsers[9].UserName</td>
+                                        <td class="avatar">
+                                            <div class="round-img">
+                                                <a href="#"><img class="rounded-circle" src="@ViewBag.randomUsers[9].ProfilePic" alt=""></a>
+                                            </div>
+                                        </td>
+                                        <td>@ViewBag.randomAchievements[9]</td>
+                                        <td>  <span>@ViewBag.billCount[9]</span> </td>
+                                        <td> <span>@ViewBag.randomUsers[9].JoinDate.Date.ToShortDateString()</span> </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div> <!-- /.table-stats -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</body>

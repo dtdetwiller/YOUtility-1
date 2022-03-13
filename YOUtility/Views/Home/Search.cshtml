@@ -1,0 +1,83 @@
+﻿
+@using YOUtility.Areas.Identity.Data
+@using Microsoft.AspNetCore.Identity
+
+@inject UserManager<YOUtilityUser> UserManager
+
+@{
+    ViewData["Title"] = "Search";
+    var id = UserManager.GetUserId(User);
+}
+
+<div class="flexbox">
+    <div class="flexbox-item flexbox-item-1">
+        <div class="wrapper">
+
+            <div>
+                <h5 class="header">Profile</h5>
+            </div>
+
+            <div>
+                <ul>
+                    <li>
+                        <div class="link-item">
+                            <a asp-area="" asp-controller="Home" asp-action="Profile" asp-route-id="@id">My Profile</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="link-item">
+                            <a asp-area="" asp-controller="Home" asp-action="Search">Search</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="link-item">
+                            <a asp-area="" asp-controller="Bills" asp-action="UserIndex">My Bills</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="link-item">
+                            <a asp-area="" asp-controller="Home" asp-action="Friends">My Friends</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+    <div class="flexbox-item flexbox-item-2 scroll-box">
+
+        <div class="wrapper">
+            <div class="search-head">
+                <div class="search-title">
+                    Search for Users
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control s_input" id="input-year" placeholder="Ex: john_smith">
+                </div>
+                <input id="s_search_button" class="btn btn-primary" type="submit" value="Find User">
+            </div>
+
+            <div id="s_application_display"></div>
+
+            <div id="s_search_template" class="card" style="display: none">
+                <div class="card-header">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title"></h5>
+                    <p class="card-text"></p>
+                    <a class="btn btn-primary">Profile</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts{
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@9.17.2/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.3.5/dist/sweetalert2.all.min.js"></script>
+    <script src="~/js/search.js"></script>
+    <link rel="stylesheet" href="~/css/Home/Search.css" />
+
+}

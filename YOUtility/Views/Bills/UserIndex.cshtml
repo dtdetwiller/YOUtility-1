@@ -1,0 +1,133 @@
+﻿@model IEnumerable<YOUtility.Models.Bill>
+
+@using YOUtility.Areas.Identity.Data
+@using Microsoft.AspNetCore.Identity
+
+@inject UserManager<YOUtilityUser> UserManager
+
+@{
+    ViewData["Title"] = "Index";
+    var id = UserManager.GetUserId(User);
+}
+
+<head>
+    <title>youtility</title>
+    <meta charset="utf-8">
+
+    <!-- Top left corner emblem -->
+    <link rel="icon" href="..\images\youtility_emblem.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://npmcdn.com/pdfjs-dist/build/pdf.js"></script>
+    <link rel="stylesheet" href="~/css/Bills/bills.css" />
+
+</head>
+
+<div class="flexbox">
+    <div class="flexbox-item flexbox-item-1">
+        <div class="wrapper">
+
+            <div>
+                <h5 class="header">Profile</h5>
+            </div>
+
+            <div>
+                <ul>
+                    <li>
+                        <div class="link-item">
+                            <a asp-area="" asp-controller="Home" asp-action="Profile" asp-route-id="@id">My Profile</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="link-item">
+                            <a asp-area="" asp-controller="Home" asp-action="Search">Search</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="link-item">
+                            <a asp-area="" asp-controller="Bills" asp-action="UserIndex">My Bills</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="link-item">
+                            <a asp-area="" asp-controller="Home" asp-action="Friends">My Friends</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+    <div class="flexbox-item flexbox-item-2 ">
+
+        <h1 class="m-2 text-center utility-header">Utility Bills</h1>
+
+        <div class="container">
+            <div class="row">
+                <div class="col text-center">
+                    <a class="btn btn-primary" asp-controller="Bills" asp-action="Create">Create New</a>
+                    <a class="btn btn-primary" asp-area="" asp-controller="Home" asp-action="Profile" asp-route-id="@ViewBag.userID">Profile</a>
+                </div>
+            </div>
+        </div>
+        <br />
+
+        <div class="scroll-box">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            Utility Type
+                        </th>
+                        <th>
+                            Cost
+                        </th>
+                        <th>
+                            Used
+                        </th>
+                        <th>
+                            Start Date
+                        </th>
+                        <th>
+                            End Date
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.utility)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.due)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.consumed)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.beginningPeriod)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.endingPeriod)
+                            </td>
+                            <td>
+                                <a asp-controller="Bills" asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                                <a asp-controller="Bills" asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                                <a asp-controller="Bills" asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+
+        </div>
+    </div>
+</div>
+

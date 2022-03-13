@@ -1,0 +1,41 @@
+﻿body {
+    background: #f5f5f5;
+}
+
+.flexbox {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 0 22.5px 15px 22.5px;
+}
+
+.flexbox-item {
+    width: calc(100% / 2 - 7.5px);
+    display: flex;
+    align-items: center;
+    padding: 15px 15px;
+    justify-content: center;
+    border-radius: 12px;
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .1);
+    margin-bottom: 15px;
+    background: white;
+}
+
+.flexbox-item-1 {
+    justify-content: center;
+}
+
+.flexbox-item-2 {
+    flex-direction: column;
+    justify-content: center;
+}
+
+.auto-upload-text, .form-upload-text {
+    font-family: Bahnschrift;
+}
+
+@media (max-width: 965px) {
+    .flexbox-item {
+        width: calc(100% / 1);
+    }
+}

@@ -1,0 +1,260 @@
+﻿@model IEnumerable<YOUtility.Models.Bill>
+@using Microsoft.AspNetCore.Identity
+@using YOUtility.Areas.Identity.Data
+
+@inject SignInManager<YOUtilityUser> SignInManager
+@inject UserManager<YOUtilityUser> UserManager
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+
+    double water = 0;
+    double gas = 0;
+    double electricity = 0;
+
+    if (Model != null)
+    {
+        foreach (Bill b in Model)
+        {
+            if (b.utility == Bill.Type.water)
+                water = b.consumed;
+            else if (b.utility == Bill.Type.gas)
+                gas = b.consumed;
+            else if (b.utility == Bill.Type.electricity)
+                electricity = b.consumed;
+        }
+    }
+}
+
+@section Scripts {
+
+    <link rel="stylesheet" href="~/css/Home/DashboardHome.css" />
+}
+
+<head>
+    <title>youtility dashboard</title>
+    <meta charset="utf-8">
+    <link rel="icon" href="~\images\youtility_emblem.png" />
+</head>
+
+<div class="overview-boxes">
+    <div class="box">
+        <div class="left-side">
+            @if (ViewBag.thisMonthWater != null)
+            {
+                @if (ViewBag.lastMonthWater != null)
+                {
+                    <div class="box_topic">Water Usage</div>
+                    <div class="usage">@ViewBag.thisMonthWater.consumed gal</div>
+                    <div class="indicator">
+                        @if (ViewBag.thisMonthWater.consumed > ViewBag.lastMonthWater.consumed)
+                        {
+                            <i class='bx bx-up-arrow-alt up'></i>
+                            <span class="text">Up from last month</span>
+                        }
+                        else if (ViewBag.thisMonthWater.consumed == ViewBag.lastMonthWater.consumed)
+                        {
+                            <i class="fas fa-arrows-alt-h same"></i>
+                            <span class="text">The same as last month</span>
+                        }
+                        else
+                        {
+                            <i class='bx bx-down-arrow-alt down'></i>
+                            <span class="text">Down from last month</span>
+                        }
+                    </div>
+                }
+                else
+                {
+                    <div class="box_topic">Water Usage</div>
+                    <div class="usage">@ViewBag.thisMonthWater.consumed gal</div>
+                    <div class="indicator">
+                        <i class="fas fa-check first"></i>
+                        <span class="text">Upload a bill every month</span>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="box_topic">Water Usage</div>
+                <div class="usage">-- gal</div>
+                <div class="indicator">
+                    <i class="fas fa-times none"></i>
+                    <span class="text">Upload a water bill</span>
+                </div>
+            }
+        </div>
+    </div>
+    <div class="box">
+        <div class="left-side">
+            @if (ViewBag.thisMonthGas != null)
+            {
+                @if (ViewBag.lastMonthGas != null)
+                {
+                    <div class="box_topic">Gas Usage</div>
+                    <div class="usage">@ViewBag.thisMonthGas.consumed therms</div>
+                    <div class="indicator">
+                        @if (ViewBag.thisMonthGas.consumed > ViewBag.lastMonthGas.consumed)
+                        {
+                            <i class='bx bx-up-arrow-alt up'></i>
+                            <span class="text">Up from last month</span>
+                        }
+                        else if (ViewBag.thisMonthGas.consumed == ViewBag.lastMonthGas.consumed)
+                        {
+                            <i class="fas fa-arrows-alt-h same"></i>
+                            <span class="text">The same as last month</span>
+                        }
+                        else
+                        {
+                            <i class='bx bx-down-arrow-alt down'></i>
+                            <span class="text">Down from last month</span>
+                        }
+                    </div>
+                }
+                else
+                {
+                    <div class="box_topic">Gas Usage</div>
+                    <div class="usage">@ViewBag.thisMonthGas.consumed therms</div>
+                    <div class="indicator">
+                        <i class="fas fa-check first"></i>
+                        <span class="text">Upload a bill every month</span>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="box_topic">Gas Usage</div>
+                <div class="usage">-- therms</div>
+                <div class="indicator">
+                    <i class="fas fa-times none"></i>
+                    <span class="text">Upload a gas bill</span>
+                </div>
+            }
+        </div>
+    </div>
+    <div class="box">
+        <div class="left-side">
+            @if (ViewBag.thisMonthElectricity != null)
+            {
+                @if (ViewBag.lastMonthElectricity != null)
+                {
+                    <div class="box_topic">Electricity Usage</div>
+                    <div class="usage">@ViewBag.thisMonthElectricity.consumed kwh</div>
+                    <div class="indicator">
+                        @if (ViewBag.thisMonthElectricity.consumed > ViewBag.lastMonthElectricity.consumed)
+                        {
+                            <i class='bx bx-up-arrow-alt up'></i>
+                            <span class="text">Up from last month</span>
+                        }
+                        else if (ViewBag.thisMonthElectricity.consumed == ViewBag.lastMonthElectricity.consumed)
+                        {
+                            <i class="fas fa-arrows-alt-h same"></i>
+                            <span class="text">The same as last month</span>
+                        }
+                        else
+                        {
+                            <i class='bx bx-down-arrow-alt down'></i>
+                            <span class="text">Down from last month</span>
+                        }
+                    </div>
+                }
+                else
+                {
+                    <div class="box_topic">Electricity Usage</div>
+                    <div class="usage">@ViewBag.thisMonthElectricity.consumed kwh</div>
+                    <div class="indicator">
+                        <i class="fas fa-check first"></i>
+                        <span class="text">Upload a bill every month</span>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="box_topic">Electricity Usage</div>
+                <div class="usage">-- kwh</div>
+                <div class="indicator">
+                    <i class="fas fa-times none"></i>
+                    <span class="text">Upload an electricity bill</span>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<div class="overview-boxes-2">
+    <div class="box box-item-1">
+        <div class="achievements">
+            <div class="achievements-title">Your Achievements</div>
+            <div class="scroll-box">
+                <ul>
+                    @{
+                        List<string> achievements = ViewBag.achievementsList;
+                        if (achievements != null)
+                        {
+
+                            int count = achievements.Count;
+                            int i = 0;
+                            while (i < count)
+                            {
+                                <li>
+                                    <div class="achievement-items">
+                                        <span><i class="fas fa-trophy"></i></span>
+                                        <span class="achievement-title">@achievements[i]</span>
+                                        <div class="achievement-desc">@achievements[i + 1]</div>
+                                    </div>
+                                </li>
+                                i += 2;
+                            }
+                            <li>
+                                <div class="achievement-items">
+                                    <span><i class="far fa-smile"></i></span>
+                                    <span class="achievement-title">Keep using YOUtility to discover new achievements...</span>
+                                </div>
+                            </li>
+                        }
+                        else
+                        {
+                            <li>
+                                <div class="achievement-items">
+                                    <span><i class="far fa-frown"></i></span>
+                                    <span class="achievement-title">You have no achievments</span>
+                                    <div class="achievement-desc">Start using YOUtility's features to get some cool achievements!</div>
+                                </div>
+                            </li>
+                        }
+                    }
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="box box-item-2">
+        <div>
+            <div class="links-title">Your Utility Provider Links</div>
+
+            <ul>
+                <li>
+                    <div class="links">
+                        <span>Water:</span>
+                        <a class="utility-links" href="https://dotnet.slcgov.com/PublicUtilities/Internet/Login/LoginDesktop">SLC Public Utilities</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="links">
+                        <span>Gas:</span>
+                        <a class="utility-links" href="https://www.questargas.com/WSS/servlet/CMMainControllerServlet?action=CMSignInAction">Dominion Energy</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="links">
+                        <span>Electricity:</span>
+                        <a class="utility-links" href="https://csapps.rockymountainpower.net/idm/guest-pay-login">Rocky Mountain Power</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!--<img src="..\images\youtility_emblem.png" alt="Image"> -->

@@ -1,0 +1,90 @@
+﻿@model YOUtility.Models.Bill
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<head>
+    <title>youtility</title>
+    <meta charset="utf-8">
+
+    <!-- Top left corner emblem -->
+    <link rel="icon" href="..\images\youtility_emblem.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://npmcdn.com/pdfjs-dist/build/pdf.js"></script>
+    <link rel="stylesheet" href="~/css/Home/site.css" />
+
+    <!-- Bills style and js-->
+    <link rel="stylesheet" href="~/css/Bills/bills.css" />
+</head>
+<main>
+    <div class="flexDisplay">
+        <div class="flexHeight">
+            <h1 class="m-2 text-center">Delete Utility Bill</h1>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.utility)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.due)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.consumed)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.uploadTime)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.beginningPeriod)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.endingPeriod)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(model => model.utility)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.due)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.consumed)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.uploadTime)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.beginningPeriod)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.endingPeriod)
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col text-center">
+                        <form asp-action="Delete">
+                            <input type="hidden" asp-for="ID" />
+                            <input type="submit" value="Delete" class="btn btn-primary" />
+                            <input asp-controller="Bills" asp-action="userIndex" type="submit" value="Bills" class="btn btn-primary" />
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+

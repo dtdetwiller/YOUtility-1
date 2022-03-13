@@ -1,0 +1,141 @@
+﻿@model YOUtility.Areas.Identity.Data.YOUtilityUser
+
+@using Microsoft.AspNetCore.Identity
+@using YOUtility.Areas.Identity.Data
+
+@inject SignInManager<YOUtilityUser> SignInManager
+@inject UserManager<YOUtilityUser> UserManager
+
+@{ 
+    var id = UserManager.GetUserId(User);
+}
+
+<head>
+    <title>youtility profile</title>
+    <meta charset="utf-8">
+    <link rel="icon" href="~\images\youtility_emblem.png" />
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<div class="flexbox">
+    <div class="flexbox-item flexbox-item-1">
+        <div class="wrapper">
+            
+            <div>
+                <h5 class="header">Profile</h5>
+            </div>
+
+            <div>
+                <ul>
+                    <li>
+                        <div class="link-item">
+                            <a asp-area="" asp-controller="Home" asp-action="Profile" asp-route-id="@id">My Profile</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="link-item">
+                            <a asp-area="" asp-controller="Home" asp-action="Search">Search</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="link-item">
+                            <a asp-area="" asp-controller="Bills" asp-action="UserIndex">My Bills</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="link-item">
+                            <a asp-area="" asp-controller="Home" asp-action="Friends">My Friends</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="link-item">
+                            <a asp-area="" asp-controller="Home" asp-action="Survey">Survey</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+    <div class="flexbox-item flexbox-item-2">
+
+        <div class="profile-pic">
+            <img src="@Model.ProfilePic" alt="profile pic">
+            <span class="username"><a asp-area="" asp-controller="Home" asp-action="Profile" asp-route-id="@id">@Model.UserName</a></span>
+        </div>
+        @if (Model.Id == UserManager.GetUserAsync(User).Result.Id)
+        {
+            <div class="profile-btn">
+                <a class="btn btn-primary" asp-area="" asp-controller="Home" asp-action="EditProfile">Edit Profile</a>
+            </div>
+        }
+        else if (ViewBag.alreadyFriends)
+        {
+            <div class="profile-btn">
+                <a class="btn btn-danger" onclick="removeFriend('@Model.Id')" asp-area="" asp-controller="Home" asp-action="Profile" asp-route-id="@Model.Id">Remove Friend</a>
+            </div>
+        }
+        else
+        {
+            <div class="profile-btn">
+                <a class="btn btn-primary" onclick="addFriend('@Model.Id')" asp-area="" asp-controller="Home" asp-action="Profile" asp-route-id="@Model.Id">Add Friend</a>
+            </div>
+        }
+
+        <div class="content-item">
+            <div>@Model.Biography</div>
+
+            <div class="user-info">
+                @if (Model.Id == UserManager.GetUserAsync(User).Result.Id)
+                {
+                    <ul>
+                        <li>
+                            <strong>Address:</strong> @Model.Address
+                        </li>
+                    </ul>
+                }
+                <ul>
+                    <li>
+                        <strong>Email:</strong> @Model.Email
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <strong>Phone:</strong> @Model.PhoneNumber
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <strong>Total Achievements:</strong> @ViewBag.achievements
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <strong>Total Bills Uploaded:</strong> @ViewBag.bills
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+            <div class="join-date">
+                @Model.UserName joined on @Model.JoinDate.Month/@Model.JoinDate.Day/@Model.JoinDate.Year
+            </div>
+
+        <hr />
+
+        
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <link rel="stylesheet" href="~/css/Home/Profile.css" />
+    <script src="~/js/Friendship/Friendship.js"></script>
+}

@@ -1,0 +1,146 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using YOUtility.Areas.Identity.Data
+
+@model YOUtility.Areas.Identity.Data.YOUtilityUser
+
+@inject UserManager<YOUtilityUser> UserManager
+
+@{
+    var id = UserManager.GetUserId(User);
+}
+
+
+<head>
+    <title>youtility</title>
+    <meta charset="utf-8">
+
+    <!-- Top left corner emblem -->
+    <link rel="icon" href="..\images\youtility_emblem.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://npmcdn.com/pdfjs-dist/build/pdf.js"></script>
+</head>
+
+
+<div class="flexbox">
+    <div class="flexbox-item flexbox-item-1">
+        <div class="form">
+            <h2 class="form-upload-text">Take A Survey</h2>
+            <form asp-action="Survey">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" />
+                <div class="form-group">
+                    <label asp-for="residents" class="control-label">How many residents are in your residence?</label>
+                    <input asp-for="residents" class="form-control" value="@ViewBag.responses[0]" />
+                    <span asp-validation-for="residents" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="feet" class="control-label">What is the square footage of your residence?</label>
+                    <input asp-for="feet" class="form-control" value="@ViewBag.responses[1]" />
+                    <span asp-validation-for="feet" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="garden" class="control-label">Do you own and maintain a garden?</label>
+                    <select asp-for="garden" class="form-control">
+                        <option value="true">True</option>
+                        @if (@ViewBag.responses[2] == "False")
+                        {
+                            <option selected="selected" value="false">False</option>
+                        }
+                        else
+                        {
+                            <option value="false">False</option>
+                        }
+                    </select>
+                    <span asp-validation-for="garden" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="lawn" class="control-label">Do you water your lawn?</label>
+                    <select asp-for="lawn" class="form-control">
+                        <option value="true">True</option>
+                        @if (@ViewBag.responses[3] == "False")
+                        {
+                            <option selected="selected" value="false">False</option>
+                        }
+                        else
+                        {
+                            <option value="false">False</option>
+                        }
+                    </select>
+                    <span asp-validation-for="lawn" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="washer" class="control-label">Do you use a washing machine more than once per week?</label>
+                    <select asp-for="washer" class="form-control">
+                        <option value="true">True</option>
+                        @if (@ViewBag.responses[4] == "False")
+                        {
+                            <option selected="selected" value="false">False</option>
+                        }
+                        else
+                        {
+                            <option value="false">False</option>
+                        }
+                    </select>
+                    <span asp-validation-for="washer" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="led" class="control-label">Do you have LED lightbulbs installed?</label>
+                    <select asp-for="led" class="form-control">
+                        <option value="true">True</option>
+                        @if (@ViewBag.responses[5] == "False")
+                        {
+                            <option selected="selected" value="false">False</option>
+                        }
+                        else
+                        {
+                            <option value="false">False</option>
+                        }
+                    </select>
+                    <span asp-validation-for="led" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="fireplace" class="control-label">Do you have a working fireplace?</label>
+                    <select asp-for="fireplace" class="form-control">
+                        <option value="true">True</option>
+                        @if (@ViewBag.responses[6] == "False")
+                        {
+                            <option selected="selected" value="false">False</option>
+                        }
+                        else
+                        {
+                            <option value="false">False</option>
+                        }
+                    </select>
+                    <span asp-validation-for="fireplace" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="trees" class="control-label">Do you have any trees planted in front of your home?</label>
+                    <select asp-for="trees" class="form-control">
+                        <option value="true">True</option>
+                        @if (@ViewBag.responses[7] == "False")
+                        {
+                            <option selected="selected" value="false">False</option>
+                        }
+                        else
+                        {
+                            <option value="false">False</option>
+                        }
+                    </select>
+                    <span asp-validation-for="trees" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="form-create btn btn-primary" />
+                    <a class="btn btn-primary" asp-area="" asp-controller="Home" asp-action="Profile" asp-route-id="@id">Profile</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <link rel="stylesheet" href="~/css/Home/survey.css" />
+}

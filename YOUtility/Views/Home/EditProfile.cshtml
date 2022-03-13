@@ -1,0 +1,118 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using YOUtility.Areas.Identity.Data
+
+@inject SignInManager<YOUtilityUser> SignInManager
+@inject UserManager<YOUtilityUser> UserManager
+
+@{
+    var id = UserManager.GetUserId(User);
+}
+
+<head>
+    <title>youtility profile</title>
+    <meta charset="utf-8">
+    <link rel="icon" href="~\images\youtility_emblem.png" />
+    <link rel="stylesheet" href="~/css/Home/EditProfile.css" />
+</head>
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <div class="container">
+        <div class="row flex-lg-nowrap">
+            <div class="col">
+                <div class="row">
+                    <div class="col mb-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="e-profile">
+                                    <div class="row">
+                                        <div class="col-12 col-sm-auto mb-3">
+                                            <div class="mx-auto" style="width: 140px;">
+                                                <div class="d-flex justify-content-center align-items-center rounded" style="height: 140px; background-color: rgb(233, 236, 239);">
+                                                    <span style="color: rgb(166, 168, 170); font: bold 8pt Arial;">140x140</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
+                                            <div class="text-center text-sm-left mb-2 mb-sm-0">
+                                                <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">@UserManager.GetUserAsync(User).Result.UserName</h4>
+                                                @if (@UserManager.GetUserAsync(User).Result.Address == null)
+                                                {
+                                                    <p>No address on file.</p>
+                                                }
+                                                else
+                                                {
+                                                    <p class="mb-0">@UserManager.GetUserAsync(User).Result.Address</p>
+                                                }
+                                                <div class="mt-2">
+                                                    <button class="btn btn-primary" type="button">
+                                                        <i class="fa fa-fw fa-camera"></i>
+                                                        <span>Change Photo</span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <ul class="nav nav-tabs">
+                                        <li class="nav-item"><a href="" class="active nav-link">Settings</a></li>
+                                    </ul>
+                                    <div class="tab-content pt-3">
+                                        <div class="tab-pane active">
+                                            <form class="form" novalidate="">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <div class="form-group">
+                                                                    <label>Username</label>
+                                                                    <input id="username" class="form-control" type="text" name="name" value="@UserManager.GetUserAsync(User).Result.UserName" placeholder="@UserManager.GetUserAsync(User).Result.UserName">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col">
+                                                                <div class="form-group">
+                                                                    <label>Address</label>
+                                                                    <input id="address" class="form-control" type="text" name="username" value="@UserManager.GetUserAsync(User).Result.Address" placeholder="1044 E 400 S, Salt Lake City UT 84102">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col mb-3">
+                                                                <div class="form-group">
+                                                                    <label>About</label>
+                                                                    <textarea id="biography" class="form-control" rows="5" placeholder="@UserManager.GetUserAsync(User).Result.Biography"></textarea>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col d-flex justify-content-end">
+                                                        <button id="btnUpdate" class="s_input btn btn-primary" type="submit">Save Changes</button>
+                                                        <a class="btn btn-primary" asp-area="" asp-controller="Home" asp-action="Profile" asp-route-id="@id">Profile</a>
+                                                    </div>
+                                                </div>
+                                            </form>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    @section Scripts{
+        <script src="~/js/update.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <script src="https://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>
+    }
+}
+
+
+

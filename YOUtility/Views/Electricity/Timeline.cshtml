@@ -1,0 +1,88 @@
+﻿@model IEnumerable<YOUtility.Models.Bill>
+@using Microsoft.AspNetCore.Identity
+@using YOUtility.Areas.Identity.Data
+
+@inject SignInManager<YOUtilityUser> SignInManager
+@inject UserManager<YOUtilityUser> UserManager
+
+@{ 
+    double january = 0;
+    double february = 0;
+    double march = 0;
+    double april = 0;
+    double may = 0;
+    double june = 0;
+    double july = 0;
+    double august = 0;
+    double september = 0;
+    double october = 0;
+    double november = 0;
+    double december = 0;
+
+    // If there are no bills, keep everything at 0.
+    if (Model.Count() > 0) {
+
+        // Get each consumed value of water for each month
+        foreach (Bill b in Model)
+        {
+            //if (b.beginningPeriod.Year == DateTime.Today.Year)
+            //{
+                if (b.beginningPeriod.Month == 1)
+                    january = b.consumed;
+                else if (b.beginningPeriod.Month == 2)
+                    february = b.consumed;
+                else if (b.beginningPeriod.Month == 3)
+                    march = b.consumed;
+                else if (b.beginningPeriod.Month == 4)
+                    april = b.consumed;
+                else if (b.beginningPeriod.Month == 5)
+                    may = b.consumed;
+                else if (b.beginningPeriod.Month == 6)
+                    june = b.consumed;
+                else if (b.beginningPeriod.Month == 7)
+                    july = b.consumed;
+                else if (b.beginningPeriod.Month == 8)
+                    august = b.consumed;
+                else if (b.beginningPeriod.Month == 9)
+                    september = b.consumed;
+                else if (b.beginningPeriod.Month == 10)
+                    october = b.consumed;
+                else if (b.beginningPeriod.Month == 11)
+                    november = b.consumed;
+                else if (b.beginningPeriod.Month == 12)
+                    december = b.consumed;
+            //}
+        }
+    }
+
+    String currYear = DateTime.Today.ToString("yyyy");
+
+}
+
+<head>
+    <title>youtility timeline</title>
+    <meta charset="utf-8">
+    <link rel="icon" href="~\images\youtility_emblem.png" />
+</head>
+
+@section Scripts {
+    <script src="~/js/Electricity/timeline.js" asp-append-version="true"></script>
+    <link rel="stylesheet" href="~/css/Utilities/timeline.css" />
+}
+
+
+<body onload="getData(@january, @february, @march, @april, @may, @june, @july, @august, @september, @october, @november, @december, @currYear)">
+    <div class="flexbox-1">
+        <div class="flexbox-item">
+            <div class="form-group">
+                <input type="text" class="form-control" id="input-year" placeholder="Type in a year (Ex: 2021)">
+            </div>
+            <input class="btn btn-primary" type="submit" value="Submit">
+        </div>
+    </div>
+    <div class="timeline-box">
+        <div class="timeline-chart">
+            <canvas id="timeline-chart"></canvas>
+        </div>
+    </div>
+</body>

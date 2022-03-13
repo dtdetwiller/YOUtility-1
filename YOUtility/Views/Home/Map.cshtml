@@ -1,0 +1,29 @@
+﻿<head>
+    <title>youtility map</title>
+    <meta charset="utf-8">
+    <link rel="icon" href="~\images\youtility_emblem.png" />
+</head>
+
+<div class="flexbox">
+    <div class="container">
+        <div class="row">
+            <div class="col text-center">
+                <div id="floating-panel">
+                    <button id="toggle-heatmap">Toggle Heatmap</button>
+                    <button id="change-gradient">Change gradient</button>
+                    <button id="change-radius">Change radius</button>
+                    <button id="change-opacity">Change opacity</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="flexbox-item">
+        <div id="map"></div>
+    </div>
+</div>
+
+@section Scripts {
+    <link rel="stylesheet" href="~/css/Home/Map.css" />
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBXyJCNfnZdjEP6v0_IWZdC-FpIsPNU3NI&libraries=visualization&callback=initMap" async defer></script>
+    <script src="~/js/map.js"></script>
+}

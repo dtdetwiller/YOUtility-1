@@ -1,0 +1,22 @@
+﻿.flexbox {
+    display: flex;
+    flex-direction: column;
+    padding: 0 15px 15px 15px;
+}
+
+.flexbox-item {
+    background: white;
+    width: calc(100% / 1 - 15px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .1);
+    margin: auto;
+}
+
+#map {
+    width: 100%;
+    height: calc(100vh - 100px);
+    border-radius: 12px;
+}
